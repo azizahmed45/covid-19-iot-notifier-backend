@@ -10,12 +10,12 @@ app.get('/', async (req, res) => {
 
   let data = response.data.feeds[0];
 
-  if (Number(data.field5) > 37 || Number(data.field4) < 97 || Number(data.field3) < 89) {
+  if (Number(data.field5) > 37 || Number(data.field4) < 97 || Number(data.field3) > 100) {
     if (Number(data.field5) > 37) {
       message += " Higher Temperature "
     }
 
-    if (Number(data.field4) < 92) {
+    if (Number(data.field4) < 98) {
       message += " and Lower SpO2 level "
     }
 
