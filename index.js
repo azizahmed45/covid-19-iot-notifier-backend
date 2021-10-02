@@ -10,17 +10,25 @@ app.get('/', async (req, res) => {
 
   let data = response.data.feeds[0];
 
-  if (Number(data.field5) > 37 || Number(data.field4) < 97 || Number(data.field3) > 100) {
+  if (Number(data.field5) > 37 || Number(data.field4) < 92 || Number(data.field3) > 100) {
     if (Number(data.field5) > 37) {
       message += " Higher Temperature "
     }
 
-    if (Number(data.field4) < 98) {
-      message += " and Lower SpO2 level "
+    if(Number(data.field5) > 37 && Number(data.field4) < 92){
+      message += " and ";
     }
 
+    if (Number(data.field4) < 92) {
+      message += "  Lower SpO2 level "
+    }
+
+    if((Number(data.field4) < 92 && Number(data.field3) > 100) || (Number(data.field5) > 37 && Number(data.field3) > 100)){
+      message += " and ";
+    }
+    
     if (Number(data.field3) > 100) {
-      message += " and Higher pulse rate "
+      message += " Higher pulse rate "
     }
     message += ` detected  Temperature: ${data.field5} SpO2 level ${data.field4}% pulse ${data.field3} of id number ${data.field1}, Name ${data.field2} at ${data.created_at}`
 
